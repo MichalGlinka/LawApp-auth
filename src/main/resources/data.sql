@@ -1,0 +1,1 @@
+INSERT INTO app_user(username,password,enabled) VALUES ('test','test',true);
