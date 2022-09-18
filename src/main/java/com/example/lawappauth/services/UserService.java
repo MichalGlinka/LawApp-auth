@@ -15,6 +15,7 @@ public class UserService implements UserManager{
     public AppUser switchUser(String username) {
         AppUser readUser = repository.read(username);
         readUser.setEnabled(!readUser.isEnabled());
+        repository.upadte(readUser);
         return readUser;
     }
 

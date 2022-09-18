@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doc</title>
+</head>
+<body>
+    <h2>Methods</h2>
+    <hr>
+    <div>
+        <div>
+            <h4>/delete</h4>
+            <p>This allows you remove user from database</p>
+            <p>/delete?username="username"</p>
+        </div>
+        <div>
+            <h4>/switch</h4>
+            <p>This change status of user to enabled if disabled and vice versa</p>
+            <p>/switch?username="username"</p>
+        </div>
+        <div>
+            <h4>/add</h4>
+            <p>This can add new user to database</p>
+            <p>/add?username="username"&password="password"&enabled="true/false"</p>
+        </div>
+        <div>
+            <h4>/reset</h4>
+            <p>This can be used to reset password for user</p>
+            <p>/reset?username="username"&password="new password"</p>
+        </div>
+        <div>
+            <h4>/read</h4>
+            <p>This can read specific user</p>
+            <p>/read?username="username"</p>
+        </div>
+        <div>
+            <h4>/readAll</h4>
+            <p>This reads all users</p>
+            <p>/readAll</p>
+        </div>
+    </div>
+</body>
+</html>

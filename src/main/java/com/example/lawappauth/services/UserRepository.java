@@ -5,6 +5,7 @@ import com.example.lawappauth.repository.DBUserAcess;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 
 @Service
 public class UserRepository {
@@ -31,5 +32,9 @@ public class UserRepository {
     @Transactional
     public void delete(String username){
         acess.deleteAppUserByUsername(username);
+    }
+
+    public ArrayList<AppUser> readAll(){
+        return acess.getAppUsersByIdNotNull();
     }
 }
