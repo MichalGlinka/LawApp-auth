@@ -12,9 +12,9 @@ public class UserService implements UserManager{
     }
 
     @Override
-    public AppUser switchUser(String username) {
+    public AppUser switchUser(String username,boolean isEnabled) {
         AppUser readUser = repository.read(username);
-        readUser.setEnabled(!readUser.isEnabled());
+        readUser.setEnabled(isEnabled);
         repository.upadte(readUser);
         return readUser;
     }

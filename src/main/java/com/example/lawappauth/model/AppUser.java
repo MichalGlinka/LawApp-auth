@@ -16,18 +16,21 @@ public class AppUser {
     String username;
     String password;
     boolean enabled;
+    boolean admin;
 
-    public AppUser(String username, String password, boolean enabled) {
+    public AppUser(String username, String password, boolean enabled, boolean admin) {
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+        this.admin = admin;
     }
 
-    public AppUser(int id, String username, String password, boolean enabled) {
+    public AppUser(int id, String username, String password, boolean enabled, boolean admin) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.enabled = enabled;
+        this.admin = admin;
     }
 
     public AppUser() {
@@ -40,6 +43,7 @@ public class AppUser {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
+                ", admin=" + admin +
                 '}';
     }
 }
