@@ -52,24 +52,40 @@ public class UserController {
     }
 
     @GetMapping("/switch")
-    public Status swith(@RequestParam String username){
+    public Status swith(@RequestParam String username,@RequestParam boolean isEnabled){
         try {
             checkUser(username);
-            AppUser user = userService.switchUser(username);
+            AppUser user = userService.switchUser(username,isEnabled);
             return new Status(user);
         }catch (NoSuchUserException e){
             return new Status("No such user");
         }
     }
 
+    @GetMapping("/update")
+    public Status updateUser(@RequestParam String username,@RequestParam String password,
+                             @RequestParam boolean enabled,@RequestParam boolean admin){
+        try {
+            checkUser(username);
+            int id = repository.read(username).getId();
+            AppUser appUser = new AppUser(id,username,password,enabled,admin);
+            repository.upadte(appUser);
+            return new Status("User updated");
+        }catch (NoSuchUserException e){
+            return new Status("No such user");
+        }
+    }
+
     @GetMapping("/add")
-    public Status add(@RequestParam String username,@RequestParam String password,@RequestParam String enabled){
+    public Status add(@RequestParam String username,@RequestParam String password,@RequestParam String enabled,
+                      @RequestParam String admin){
         try {
             checkUser(username);
             return new Status("User already exists");
         }catch (NoSuchUserException e){
             boolean enab = enabled.equals("true");
-            AppUser user = new AppUser(username,password,enab);
+            boolean adm = admin.equals("true");
+            AppUser user = new AppUser(username,password,enab,adm);
             repository.create(user);
             return new Status(user);
         }
@@ -78,8 +94,8 @@ public class UserController {
     @GetMapping("/reset")
     public Status resetPassword(@RequestParam String username,@RequestParam String password){
         try {
-            int id = checkUser(username).getId();
-            AppUser user = new AppUser(id,username,password,true);
+            AppUser readedUser = checkUser(username);
+            AppUser user = new AppUser(readedUser.getId(),username,password, readedUser.isEnabled(), readedUser.isAdmin());
             repository.upadte(user);
             return new Status(user);
         }catch (NoSuchUserException e){
