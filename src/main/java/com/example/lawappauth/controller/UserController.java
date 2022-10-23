@@ -31,6 +31,13 @@ public class UserController {
         return new Authentication(auth);
     }
 
+    /**@GetMapping("/auth")
+    public ResponseEntity<String> authenticate(@RequestParam String username, @RequestParam String password){
+        boolean auth = authorization.Authenticate(username,password);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set();
+    }**/
+
     private AppUser checkUser(String username){
         AppUser user = repository.read(username);
         if (user == null){
